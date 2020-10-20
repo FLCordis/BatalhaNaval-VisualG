@@ -66,12 +66,14 @@ programa
 			se (tabuleiro[l][c] == 1){
 				escreva("\nVOCÊ ACERTOU!\n");
 				tabuleiroTentativa[l][c] = 2;
+				tabuleiro[l][c] = 4;
 				acertos = acertos++;
 				rodada = rodada++;
 			}
 			senao se(tabuleiro[l][c] == 0){
 				escreva("\nVOCÊ ERROU :( !\n");
 				tabuleiroTentativa[l][c] = 4;
+				tabuleiro[l][c] = 4;
 				rodada = rodada++;
 			}
 			senao se(tabuleiro[l][c] == 2){
