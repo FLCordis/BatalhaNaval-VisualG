@@ -7,7 +7,7 @@ programa
 	funcao inicio()
 	{
 		inteiro tabuleiro[8][8];
-		inteiro l, c, navio, cont=0, acertos=0;
+		inteiro l, c, lAntigo=0, cont=0, cont1=0, acertos=0;
 
 		/// COLOCANDO TODOS VALORES DO TABULEIRO COMO 0!
 		para(l=0;l<8;l++){
@@ -24,16 +24,23 @@ programa
 		/// COLOCANDO BARCOS EM ORDEM ALEATÓRIAS
 		enquanto(cont<8){
 		l = sorteia(0,7)
+			enquanto(l==lAntigo){
+				l = sorteia(0,7)
+			}
+		lAntigo = l
+		
 		c = sorteia(0,7)
+		
 		tabuleiro[l][c] = 1
 		cont = cont++
 		}
+			
 
 		/// CRIANDO UM LOOP COM NÚMERO DE RODADAS!
 		inteiro rodada = 1
 		enquanto (rodada<10){
 			escreva("\n..::RODADA: ",rodada,"::..\n");
-			escreva("Informe os espaços a serem inseridos: \n");
+			escreva("Informe a posição a ser disparada: \n");
 			escreva("Linha: ");
 			leia(l);
 			escreva("Coluna: ");
@@ -73,19 +80,21 @@ programa
 		}
 
 		se (acertos>3){
-			escreva("|========================================|")
-			escreva("|                                        |")
-			escreva("|VOCÊ GANHOU COM ",acertos," DE 8 ACERTOS|")
-			escreva("|                                        |")
-			escreva("|========================================|")
+			escreva("\n\n")
+			escreva("|========================================|\n")
+			escreva("|                                        |\n")
+			escreva("|  VOCÊ GANHOU COM ",acertos," DE 8 ACERTOS        |\n")
+			escreva("|                                        |\n")
+			escreva("|========================================|\n")
 		}
 
 		se (acertos<3){
-			escreva("|========================================|")
-			escreva("|                                        |")
-			escreva("|VOCÊ PERDEU :(, ",acertos," DE 8 ACERTOS|")
-			escreva("|                                        |")
-			escreva("|========================================|")
+			escreva("\n\n")
+			escreva("|========================================|\n")
+			escreva("|                                        |\n")
+			escreva("|  VOCÊ PERDEU :(, ",acertos," DE 8 ACERTOS        |\n")
+			escreva("|                                        |\n")
+			escreva("|========================================|\n")
 		}
 	}
 }
