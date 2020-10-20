@@ -7,6 +7,7 @@ programa
 	funcao inicio()
 	{
 		inteiro tabuleiro[8][8];
+		inteiro tabuleiroTentativa[8][8];
 		inteiro l, c, lAntigo=0, cont=0, cont1=0, acertos=0;
 
 		/// COLOCANDO TODOS VALORES DO TABULEIRO COMO 0!
@@ -20,6 +21,8 @@ programa
 		escreva("============================\n")
 		escreva("ACERTE 4 OU MAIS PARA GANHAR!\n")
 		escreva("============================")
+		escreva("\n")
+		escreva("Legenda: \n 2 - ACERTO \n 4 - ERRO\n")
 
 		/// COLOCANDO BARCOS EM ORDEM ALEATÓRIAS
 		enquanto(cont<8){
@@ -62,13 +65,13 @@ programa
 			/// VERIFICANDO OS LOCAIS CHUTADOS!
 			se (tabuleiro[l][c] == 1){
 				escreva("\nVOCÊ ACERTOU!\n");
-				tabuleiro[l][c] = 2;
+				tabuleiroTentativa[l][c] = 2;
 				acertos = acertos++;
 				rodada = rodada++;
 			}
 			senao se(tabuleiro[l][c] == 0){
 				escreva("\nVOCÊ ERROU :( !\n");
-				tabuleiro[l][c] = 4;
+				tabuleiroTentativa[l][c] = 4;
 				rodada = rodada++;
 			}
 			senao se(tabuleiro[l][c] == 2){
@@ -76,6 +79,18 @@ programa
 			}
 			senao se(tabuleiro[l][c] == 4){
 				escreva("\nVOCÊ JÁ CHUTOU NESTE LOCAL! TENTE DENOVO.\n")
+			}
+
+			para(l=0; l<8; l++){
+				para(c=0;c<8;c++){
+					se (c==7){
+						escreva("[",tabuleiroTentativa[l][c],"]\n")
+					}
+					senao{
+						escreva("[",tabuleiroTentativa[l][c],"]")
+					}
+					
+				}
 			}
 		}
 
