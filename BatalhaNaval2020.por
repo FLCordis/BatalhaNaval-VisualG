@@ -1,3 +1,6 @@
+/// FEITO POR FLÁVIO M. P. DE CORDIS
+/// DATA: 20/10/2020
+
 programa
 {
 	
