@@ -1,0 +1,159 @@
+/// FEITO POR FLÁVIO M. P. DE CORDIS
+/// DATA: 20/10/2020
+
+programa
+{
+	inclua biblioteca Util --> u
+	funcao inicio()
+	{
+		inteiro tabuleiro[8][8];
+		caracter visual[8][8];
+		inteiro l, c=0, barcos = 0;
+
+		escreva("++++++ BATALHA NAVAL! ++++++\n")
+		escreva("============================\n")
+		escreva("  QUEM ACERTAR MAIS GANHA!\n")
+		escreva("============================")
+		escreva("\n")
+		escreva("Legenda: \n 'X' -> ACERTO \n '-' -> ERRO\n")
+
+		/// COLOCANDO TODOS VALORES DO TABULEIRO COMO 0!
+		enquanto(barcos<12){
+			l = u.sorteia(0, 7)
+			c = u.sorteia(0, 7)
+			tabuleiro[l][c] = 1;
+			barcos = barcos + 1;	
+			}
+			
+		para(l=0;l<8;l++){
+			para(c=0;c<8;c++){
+				visual[l][c] = 'O';
+			}
+		}
+			
+		/// CRIANDO UM LOOP COM NÚMERO DE RODADAS!
+		inteiro PtJogador1 = 0, PtJogador2 = 0, turno = 1;
+		enquanto (barcos!=0){
+			se(turno == 1){	
+				escreva("\n..::RODADA: ",turno,"::..\n");
+				escreva("|====== JOGADOR 1 ======|\n")
+				escreva("Informe a posição a ser disparada: \n");
+				escreva("Linha: ");
+				leia(l);
+				escreva("Coluna: ");
+				leia(c);
+			}
+
+				se (tabuleiro[l][c] == 1){
+					escreva("\nVOCÊ ACERTOU!\n");
+					visual[l][c] = 'X';
+					tabuleiro[l][c] = 2;
+					barcos = barcos -1;
+
+					PtJogador1 = PtJogador1++;
+				}
+				senao se(tabuleiro[l][c] == 0){
+					escreva("\nVOCÊ ERROU :( !\n");
+					visual[l][c] = '-';
+					tabuleiro[l][c] = 3;
+					turno = 2;
+				}
+
+				senao se ((l < 0) e (l > 7)){
+					escreva("\nLINHA INSERIDA INVÁLIDA! INSIRA ENTRE 0-7")
+					escreva("\nLinha: ");
+					leia(l);
+				}
+
+				senao se ((c < 0) e (c > 7)){
+					escreva("\nColuna INSERIDA INVÁLIDA! INSIRA ENTRE 0-7")
+					escreva("\nColuna: ");
+					leia(c);
+				}
+
+				senao se(visual[l][c] == 'X'){
+					escreva("\nVOCÊ JÁ ACERTOU NESTE LOCAL! TENTE DENOVO.\n")
+				}
+				
+				senao se(visual[l][c] == '-'){
+					escreva("\nVOCÊ JÁ CHUTOU NESTE LOCAL! TENTE DENOVO.\n")
+				}
+
+			senao se(turno == 2){	
+				escreva("\n..::RODADA: ",turno,"::..\n");
+				escreva("|====== JOGADOR 2 ======|\n")
+				escreva("Informe a posição a ser disparada: \n");
+				escreva("Linha: ");
+				leia(l);
+				escreva("Coluna: ");
+				leia(c);
+			}
+
+				senao se(tabuleiro[l][c] == 1){
+					escreva("\nVOCÊ ACERTOU!\n");
+					visual[l][c] = 'X';
+					tabuleiro[l][c] = 2;
+					barcos = barcos -1;
+
+					PtJogador2 = PtJogador2++
+				}
+				
+				senao se(tabuleiro[l][c] == 0){
+					escreva("\nVOCÊ ERROU :( !\n");
+					visual[l][c] = '-';
+					tabuleiro[l][c] = 3;
+					turno = 1;
+				}
+
+				senao se((l < 0) e (l > 7)){
+					escreva("\nLINHA INSERIDA INVÁLIDA! INSIRA ENTRE 0-7")
+					escreva("\nLinha: ");
+					leia(l);
+				}
+
+				senao se((c < 0) e (c > 7)){
+					escreva("\nColuna INSERIDA INVÁLIDA! INSIRA ENTRE 0-7")
+					escreva("\nColuna: ");
+					leia(c);
+				}
+
+				senao se(visual[l][c] == 'X'){
+					escreva("\nVOCÊ JÁ ACERTOU NESTE LOCAL! TENTE DENOVO.\n")
+				}
+				
+				senao se(visual[l][c] == '-'){
+					escreva("\nVOCÊ JÁ CHUTOU NESTE LOCAL! TENTE DENOVO.\n")
+				}
+
+			para(l=0; l<8; l++){
+				para(c=0;c<8;c++){
+					se (c==7){
+						escreva("[",visual[l][c],"]\n")
+					}
+					senao{
+						escreva("[",visual[l][c],"]")
+					}
+					
+				}
+			}
+		}
+
+		se (PtJogador1>PtJogador2){
+			escreva("\n\n")
+			escreva("|========================================|\n")
+			escreva("|                                        |\n")
+			escreva("|  JOGADOR 1 GANHOU COM ",PtJogador1,"        |\n")
+			escreva("|                                        |\n")
+			escreva("|========================================|\n")
+		}
+
+		se (PtJogador1<PtJogador2){
+			escreva("\n\n")
+			escreva("|========================================|\n")
+			escreva("|                                        |\n")
+			escreva("|  JOGADOR 2 GANHOU COM ",PtJogador2,"        |\n")
+			escreva("|                                        |\n")
+			escreva("|========================================|\n")
+		}
+	}
+}
